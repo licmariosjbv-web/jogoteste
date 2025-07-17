@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Perguntas e Respostas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .pergunta {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .resultado {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .pontuacao {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jogo de Perguntas e Respostas</h1>
+    <div id="jogo">
+        <div class="pontuacao">Pontuação: <span id="pontos">0</span></div>
+        <div class="pergunta" id="pergunta"></div>
+        <div class="opcoes" id="opcoes"></div>
+        <div class="resultado" id="resultado"></div>
+        <button id="proxima" style="display: none;">Próxima Pergunta</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
