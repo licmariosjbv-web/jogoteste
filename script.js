@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 // Banco de perguntas personalizado
 const perguntas = [
     {
@@ -26,101 +28,119 @@ const perguntas = [
         opcoes: ["Do Gato Torrada", "Do meu vizinho ou de qualquer outro menino aleatório sem graça que eu dei match no Tinder", "Do Mario, aquele lindo, Grande, Gostoso", "De nada, se pudesse nem voltava"],
         resposta: 2,
         mensagemAcerto: "Aeeee, sempre soube que ia acertar todas, hoje a noite tem uma surpresa a mais hehe",
-        mensagemErro: "Errar essa, não tem perdão! Perdeu o cú!"
+        mensagemErro: "Errar essa!? Não tem perdão! Perdeu o CÚ!"
     }
 ];
 
-let perguntaAtual = 0;
-let pontuacao = 0;
-let respostaSelecionada = null;
+    // Variáveis do jogo
+    let perguntaAtual = 0;
+    let pontuacao = 0;
+    let respostaSelecionada = null;
 
-// Elementos do DOM
-const telaInicial = document.getElementById('tela-inicial');
-const jogo = document.getElementById('jogo');
-const elementoPergunta = document.getElementById('pergunta');
-const elementoOpcoes = document.getElementById('opcoes');
-const elementoResultado = document.getElementById('resultado');
-const elementoPontuacao = document.getElementById('pontos');
-const elementoTotalPerguntas = document.getElementById('total-perguntas');
-const botaoIniciar = document.getElementById('iniciar-jogo');
+    // Elementos do DOM
+    const telaInicial = document.getElementById('tela-inicial');
+    const jogo = document.getElementById('jogo');
+    const elementoPergunta = document.getElementById('pergunta');
+    const elementoOpcoes = document.getElementById('opcoes');
+    const elementoResultado = document.getElementById('resultado');
+    const elementoPontuacao = document.getElementById('pontos');
+    const elementoTotalPerguntas = document.getElementById('total-perguntas');
+    const botaoIniciar = document.getElementById('iniciar-jogo');
+    const botoesNavegacao = document.getElementById('botoes-navegacao');
+    const botaoVoltar = document.getElementById('voltar');
+    const botaoProxima = document.getElementById('proxima');
 
-// Iniciar o jogo
-botaoIniciar.addEventListener('click', () => {
-    telaInicial.style.display = 'none';
-    jogo.style.display = 'block';
-    elementoTotalPerguntas.textContent = perguntas.length;
-    carregarPergunta();
-});
+    // Iniciar o jogo
+    botaoIniciar.addEventListener('click', iniciarJogo);
 
-// Função para carregar a pergunta
-function carregarPergunta() {
-    const pergunta = perguntas[perguntaAtual];
-    elementoPergunta.textContent = pergunta.pergunta;
-    
-    elementoOpcoes.innerHTML = '';
-    pergunta.opcoes.forEach((opcao, index) => {
-        const botao = document.createElement('button');
-        botao.textContent = opcao;
-        botao.addEventListener('click', () => selecionarResposta(index));
-        elementoOpcoes.appendChild(botao);
-    });
-    
-    elementoResultado.textContent = '';
-    respostaSelecionada = null;
-}
-
-// Função para selecionar resposta
-function selecionarResposta(index) {
-    respostaSelecionada = index;
-    const botoes = elementoOpcoes.querySelectorAll('button');
-    const pergunta = perguntas[perguntaAtual];
-    
-    // Desabilitar todos os botões
-    botoes.forEach(botao => {
-        botao.disabled = true;
-    });
-    
-    // Destacar a resposta correta em verde
-    botoes[pergunta.resposta].style.backgroundColor = '#4CAF50';
-    botoes[pergunta.resposta].style.color = 'white';
-    
-    if (index === pergunta.resposta) {
-        pontuacao++;
-        elementoPontuacao.textContent = pontuacao;
-        elementoResultado.textContent = pergunta.mensagemAcerto;
-        elementoResultado.style.backgroundColor = '#e8f5e9';
-        elementoResultado.style.color = '#2e7d32';
-    } else {
-        // Destacar a resposta errada em vermelho
-        botoes[index].style.backgroundColor = '#f44336';
-        botoes[index].style.color = 'white';
-        elementoResultado.textContent = pergunta.mensagemErro;
-        elementoResultado.style.backgroundColor = '#ffebee';
-        elementoResultado.style.color = '#c62828';
-    }
-    
-    // Avançar para próxima pergunta ou finalizar
-    setTimeout(() => {
-        if (index === pergunta.resposta) {
-            proximaPergunta();
-        } else {
-            reiniciarJogo();
-        }
-    }, 3000);
-}
-
-// Função para próxima pergunta
-function proximaPergunta() {
-    perguntaAtual++;
-    if (perguntaAtual < perguntas.length) {
+    function iniciarJogo() {
+        telaInicial.style.display = 'none';
+        jogo.style.display = 'block';
+        elementoTotalPerguntas.textContent = perguntas.length;
         carregarPergunta();
-    } else {
-        // Fim do jogo com vitória
-        elementoPergunta.textContent = "Parabéns, Daniela! Bem vinda de volta, estava com saudades";
+    }
+
+    // Função para carregar a pergunta
+    function carregarPergunta() {
+        const pergunta = perguntas[perguntaAtual];
+        elementoPergunta.textContent = pergunta.pergunta;
+        
+        elementoOpcoes.innerHTML = '';
+        pergunta.opcoes.forEach((opcao, index) => {
+            const botao = document.createElement('button');
+            botao.textContent = opcao;
+            botao.addEventListener('click', () => selecionarResposta(index));
+            elementoOpcoes.appendChild(botao);
+        });
+        
+        elementoResultado.textContent = '';
+        botoesNavegacao.style.display = 'none';
+        respostaSelecionada = null;
+    }
+
+    // Função para selecionar resposta
+    function selecionarResposta(index) {
+        respostaSelecionada = index;
+        const botoes = elementoOpcoes.querySelectorAll('button');
+        const pergunta = perguntas[perguntaAtual];
+        
+        // Desabilitar todos os botões
+        botoes.forEach(botao => {
+            botao.disabled = true;
+        });
+        
+        // Destacar a resposta correta em verde
+        botoes[pergunta.resposta].style.backgroundColor = '#4CAF50';
+        botoes[pergunta.resposta].style.color = 'white';
+        
+        if (index === pergunta.resposta) {
+            pontuacao++;
+            elementoPontuacao.textContent = pontuacao;
+            elementoResultado.textContent = pergunta.mensagemAcerto;
+            elementoResultado.style.backgroundColor = '#e8f5e9';
+            elementoResultado.style.color = '#2e7d32';
+            
+            // Configuração para acerto
+            botoesNavegacao.style.display = 'flex';
+            botaoVoltar.style.display = 'none';
+            botaoProxima.style.display = 'block';
+        } else {
+            // Destacar a resposta errada em vermelho
+            botoes[index].style.backgroundColor = '#f44336';
+            botoes[index].style.color = 'white';
+            elementoResultado.textContent = pergunta.mensagemErro;
+            elementoResultado.style.backgroundColor = '#ffebee';
+            elementoResultado.style.color = '#c62828';
+            
+            // Configuração para erro
+            botoesNavegacao.style.display = 'flex';
+            botaoVoltar.style.display = 'block';
+            botaoVoltar.textContent = "Voltar ao Início";
+            botaoProxima.style.display = 'none';
+        }
+    }
+
+    // Botão próxima pergunta
+    botaoProxima.addEventListener('click', function() {
+        perguntaAtual++;
+        if (perguntaAtual < perguntas.length) {
+            carregarPergunta();
+        } else {
+            finalizarJogo();
+        }
+    });
+
+    // Botão voltar
+    botaoVoltar.addEventListener('click', reiniciarJogo);
+
+    // Função para finalizar o jogo
+    function finalizarJogo() {
+        elementoPergunta.textContent = "Parabéns, Daniela!";
         elementoOpcoes.innerHTML = '';
         elementoResultado.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas sobre o Mario!`;
         elementoResultado.style.backgroundColor = '#e8f5e9';
         elementoResultado.style.color = '#2e7d32';
+        botoesNavegacao.style.display = 'none';
         
         // Botão para reiniciar
         const botaoReiniciar = document.createElement('button');
@@ -130,16 +150,16 @@ function proximaPergunta() {
         botaoReiniciar.style.color = 'white';
         elementoOpcoes.appendChild(botaoReiniciar);
     }
-}
 
-// Função para reiniciar o jogo
-function reiniciarJogo() {
-    perguntaAtual = 0;
-    pontuacao = 0;
-    elementoPontuacao.textContent = pontuacao;
-    carregarPergunta();
-}
+    // Função para reiniciar o jogo
+    function reiniciarJogo() {
+        perguntaAtual = 0;
+        pontuacao = 0;
+        elementoPontuacao.textContent = pontuacao;
+        carregarPergunta();
+    }
 
-// Mostrar tela inicial inicialmente
-telaInicial.style.display = 'block';
-jogo.style.display = 'none';
+    // Inicialização
+    telaInicial.style.display = 'block';
+    jogo.style.display = 'none';
+});
