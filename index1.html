@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Perguntas e Respostas</title>
+    <title>Quiz de Perguntas e Resposta</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,9 +11,10 @@
             margin: 0 auto;
             padding: 20px;
             text-align: center;
+            background-color: #fff5f5;
         }
-        .pergunta {
-            font-size: 1.5em;
+        .tela-inicial, .pergunta {
+            font-size: 1.2em;
             margin-bottom: 20px;
         }
         .opcoes {
@@ -26,26 +27,49 @@
             padding: 10px;
             font-size: 1em;
             cursor: pointer;
+            background-color: #ffebee;
+            border: 1px solid #ffcdd2;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #ffcdd2;
         }
         .resultado {
             font-weight: bold;
             margin-top: 20px;
             font-size: 1.2em;
+            padding: 10px;
+            border-radius: 5px;
         }
         .pontuacao {
             margin-top: 20px;
             font-size: 1.2em;
+            color: #d32f2f;
+        }
+        #iniciar-jogo {
+            background-color: #f44336;
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Jogo de Perguntas e Respostas</h1>
-    <div id="jogo">
-        <div class="pontuacao">Pontuação: <span id="pontos">0</span></div>
-        <div class="pergunta" id="pergunta"></div>
-        <div class="opcoes" id="opcoes"></div>
-        <div class="resultado" id="resultado"></div>
-        <button id="proxima" style="display: none;">Próxima Pergunta</button>
+    <div id="conteudo">
+        <div id="tela-inicial" class="tela-inicial">
+            <h1>Quiz do Amor pelo Mario</h1>
+            <h2>Versão 1.0</h2>
+            <p>Atenção, Daniela! Você está preste a testar o seu amor pelo Mario, as perguntas deste jogo não são necessariamente justas e, caso você erre alguma, esteja ciente de que sofrerá o frio e implacável ostracismo que só um coração partido pode oferecer.</p>
+            <button id="iniciar-jogo">Começar o Quiz</button>
+        </div>
+
+        <div id="jogo" style="display: none;">
+            <div class="pontuacao">Acertos: <span id="pontos">0</span> de <span id="total-perguntas">0</span></div>
+            <div class="pergunta" id="pergunta"></div>
+            <div class="opcoes" id="opcoes"></div>
+            <div class="resultado" id="resultado"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
