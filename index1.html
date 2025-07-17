@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Perguntas e Resposta</title>
+    <title>Quiz do Amor pelo Mario</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,13 +53,21 @@
             font-size: 1.2em;
             margin-top: 20px;
         }
+        .botoes-navegacao {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .botoes-navegacao button {
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
     <div id="conteudo">
         <div id="tela-inicial" class="tela-inicial">
             <h1>Quiz do Amor pelo Mario</h1>
-            <h2>Versão 1.0</h2>
             <p>Atenção, Daniela! Você está preste a testar o seu amor pelo Mario, as perguntas deste jogo não são necessariamente justas e, caso você erre alguma, esteja ciente de que sofrerá o frio e implacável ostracismo que só um coração partido pode oferecer.</p>
             <button id="iniciar-jogo">Começar o Quiz</button>
         </div>
@@ -69,6 +77,10 @@
             <div class="pergunta" id="pergunta"></div>
             <div class="opcoes" id="opcoes"></div>
             <div class="resultado" id="resultado"></div>
+            <div class="botoes-navegacao" id="botoes-navegacao" style="display: none;">
+                <button id="voltar">Voltar ao Início</button>
+                <button id="proxima">Próxima Pergunta</button>
+            </div>
         </div>
     </div>
 
