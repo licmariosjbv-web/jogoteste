@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resposta: 2
         },
         {
-            pergunta: "Nesses dias que você não o viu durante suas 'Férias' <s>desempregada</s> o que você mais sentiu falta?",
+            pergunta: "Nesses dias que você não o viu durante suas 'Férias (Desempregada)' o que você mais sentiu falta?",
             opcoes: [
                 "Do Gato Torrada", 
                 "Do meu vizinho ou de qualquer outro menino aleatório sem graça que eu dei match no Tinder", 
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function finalizarJogo() {
         elementoPergunta.textContent = "Parabéns, Daniela!, você passou no QUIZ!";
         elementoOpcoes.innerHTML = '';
-        elementoResultado.textContent = `Você terminou o quiz de perguntas, com Nota ${pontuacao} acerto de ${perguntas.length} perguntas`;
+        elementoResultado.textContent = `Você terminou o quiz, com Nota ${pontuacao} de ${perguntas.length} perguntas`;
         elementoResultado.style.backgroundColor = '#e8f5e9';
         elementoResultado.style.color = '#2e7d32';
         botoesNavegacao.style.display = 'none';
