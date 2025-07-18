@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function finalizarJogo() {
         elementoPergunta.textContent = "Parabéns, Daniela!, você passou no QUIZ!";
         elementoOpcoes.innerHTML = '';
-        elementoResultado.textContent = `Você terminou o quiz, com Nota ${pontuacao} de ${perguntas.length} perguntas`;
+        elementoResultado.textContent = `Sua nota é ${pontuacao} de ${perguntas.length} perguntas`;
         elementoResultado.style.backgroundColor = '#e8f5e9';
         elementoResultado.style.color = '#2e7d32';
         botoesNavegacao.style.display = 'none';
